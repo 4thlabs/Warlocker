@@ -1,0 +1,145 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+    <Include file="SpellBar_Template.xml"/>
+
+    <!-- Main button template -->
+    <Button name="Warlocker_SpellBarMainButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture file="Interface\AddOns\Warlocker\Assets\uicollapsebutton.tga">
+                    <Anchors>
+                        <Anchor point="CENTER">
+                            <Offset>
+                                <AbsDimension x="-20" y="0"/>
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                    <Size>
+                        <AbsDimension x="16" y="16"/>
+                    </Size>
+                    <TexCoords left="0" right="1" top="0" bottom="0.5"></TexCoords>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Button>
+
+    <!-- SpellBar main frame -->
+    <Frame name="Warlocker_SpellBarFrame" parent="Warlocker_MainFrame">
+        <Frames>
+            <Button name="Warlocker_SpellBarPetButton1" inherits="Warlocker_SpellBarMainButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="Warlocker_CounterFrame" relativePoint="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>Warlocker.SpellBar:ShowMenu("Warlocker_SpellBarPet")</OnEnter>
+                    <OnLeave>Warlocker.SpellBar:HideMenu("Warlocker_SpellBarPet")</OnLeave>
+                </Scripts>
+            </Button>
+
+            <Button name="Warlocker_SpellBarStoneButton1" inherits="Warlocker_SpellBarMainButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="Warlocker_CounterFrame" relativePoint="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="0" y="-36"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>Warlocker.SpellBar:ShowMenu("Warlocker_SpellBarStone")</OnEnter>
+                    <OnLeave>Warlocker.SpellBar:HideMenu("Warlocker_SpellBarStone")</OnLeave>
+                </Scripts>
+            </Button>
+
+            <Button name="Warlocker_SpellBarBuffButton1" inherits="Warlocker_SpellBarMainButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="Warlocker_CounterFrame" relativePoint="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="0" y="-82"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>Warlocker.SpellBar:ShowMenu("Warlocker_SpellBarBuff")</OnEnter>
+                    <OnLeave>Warlocker.SpellBar:HideMenu("Warlocker_SpellBarBuff")</OnLeave>
+                </Scripts>
+            </Button>
+            <Button name="Warlocker_SpellBarInvocButton1" inherits="Warlocker_SpellBarMainButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="Warlocker_SpellBarBuffButton1" relativePoint="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="0" y="-10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>Warlocker.SpellBar:ShowMenu("Warlocker_SpellBarInvoc")</OnEnter>
+                    <OnLeave>Warlocker.SpellBar:HideMenu("Warlocker_SpellBarInvoc")</OnLeave>
+                </Scripts>
+            </Button>
+        </Frames>
+
+        <Scripts>
+            <OnLoad>Warlocker.SpellBar:OnLoad()</OnLoad>
+            <OnEvent>Warlocker.SpellBar:OnEvent(event)</OnEvent>
+        </Scripts>
+    </Frame>
+
+     <Frame name="Warlocker_SpellBarPet" inherits="Warlocker_SpellBarTemplate" hidden="true">
+        <Anchors>
+            <Anchor point="RIGHT" relativeTo="Warlocker_SpellBarPetButton1" relativePoint="LEFT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Size>
+            <AbsDimension x="200" y="56"/>
+        </Size>
+    </Frame>
+
+     <!-- Spell Bar stone menu -->
+    <Frame name="Warlocker_SpellBarStone" inherits="Warlocker_SpellBarTemplate" hidden="true">
+        <Anchors>
+            <Anchor point="RIGHT" relativeTo="Warlocker_SpellBarStoneButton1" relativePoint="LEFT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Size>
+            <AbsDimension x="300" y="56"/>
+        </Size>
+    </Frame>
+
+         <!-- Spell Bar buff menu -->
+    <Frame name="Warlocker_SpellBarBuff" inherits="Warlocker_SpellBarTemplate" hidden="true">
+        <Anchors>
+            <Anchor point="RIGHT" relativeTo="Warlocker_SpellBarBuffButton1" relativePoint="LEFT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Size>
+            <AbsDimension x="250" y="56"/>
+        </Size>
+    </Frame>
+
+             <!-- Spell Bar Invoc menu -->
+    <Frame name="Warlocker_SpellBarInvoc" inherits="Warlocker_SpellBarTemplate">
+        <Anchors>
+            <Anchor point="RIGHT" relativeTo="Warlocker_SpellBarInvocButton1" relativePoint="LEFT">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+        <Size>
+            <AbsDimension x="60" y="56"/>
+        </Size>
+    </Frame>
+</Ui>

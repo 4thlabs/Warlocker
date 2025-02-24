@@ -1,0 +1,9 @@
+## Interface: 11200
+## Title: |CFF6A6093Warlocker AddOn
+## Author: Balderz
+## Notes: Warlock AddOn
+## Version: 0.0.1
+## DefaultState: enabled
+
+# XML Files
+Warlocker.xml

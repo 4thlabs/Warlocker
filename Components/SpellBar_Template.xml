@@ -1,0 +1,78 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+    
+    <Button name="Warlocker_SpellBarButtonTemplate" inherits="ActionButtonTemplate" virtual="true">
+    </Button>
+
+    <Frame name="Warlocker_SpellBarTemplate" parent="Warlocker_MainFrame" hidden="true" virtual="true">
+        <Size>
+            <AbsDimension x="200" y="56"/>
+        </Size>
+        <Frames>
+            <Button name="$parentButton2" inherits="Warlocker_SpellBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT">
+                        <Offset>
+                            <AbsDimension x="-10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentButton3" inherits="Warlocker_SpellBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentButton2" relativePoint="LEFT">
+                        <Offset>
+                            <AbsDimension x="-10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentButton4" inherits="Warlocker_SpellBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentButton3" relativePoint="LEFT">
+                        <Offset>
+                            <AbsDimension x="-10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentButton5" inherits="Warlocker_SpellBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentButton4" relativePoint="LEFT">
+                        <Offset>
+                            <AbsDimension x="-10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentButton6" inherits="Warlocker_SpellBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentButton5" relativePoint="LEFT">
+                        <Offset>
+                            <AbsDimension x="-10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+            <Button name="$parentButton7" inherits="Warlocker_SpellBarButtonTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeTo="$parentButton6" relativePoint="LEFT">
+                        <Offset>
+                            <AbsDimension x="-10" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad>Warlocker.SpellBar:OnLoadMenu()</OnLoad>
+            <OnEnter>Warlocker.SpellBar:ShowMenu()</OnEnter>
+            <OnLeave>Warlocker.SpellBar:HideMenu()</OnLeave>
+        </Scripts>
+        <!-- <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border">
+            <EdgeSize val="8"/>
+            <Color r="1.0" g="0" b="0"/>
+ 	        <BackgroundInsets left="2" right="2" top="2" bottom="2"/>
+        </Backdrop> -->
+    </Frame>
+</Ui>

@@ -1,0 +1,36 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+    <Include file="Config.lua"/>
+    <Include file="Warlocker.lua"/>
+    <Include file="Components\Counter.lua"/>
+    <Include file="Components\SpellBar.lua"/>
+    <Include file="Components\Port.lua"/>
+
+    <!-- <GameTooltip name="WarlockerTooltip" inherits="GameTooltipTemplate" mixin="BackdropTemplateMixin" parent="UIParent" toplevel="true" movable="true" frameStrata="LOW" /> -->
+    
+    <Frame name="Warlocker_MainFrame" inherits="BackdropTemplate" parent="UIParent" movable="true" enableMouse="true" toplevel="false">
+        <Size>
+            <AbsDimension x="100" y="128"/>
+        </Size>
+
+        <Anchors>
+            <Anchor point="RIGHT" relativeTo="UIParent" relativePoint="RIGHT">
+                <Offset>
+                    <AbsDimension x="-100" y="-100"/>
+                </Offset>     
+            </Anchor>
+        </Anchors>
+        
+        <Scripts>
+            <OnLoad>Warlocker:OnLoad();</OnLoad>
+            <OnUpdate>Warlocker:OnUpdate()</OnUpdate>
+            <OnEvent>Warlocker:OnEvent(event);</OnEvent>
+            <OnDragStart>Warlocker:OnDragStart();</OnDragStart>
+            <OnDragStop>Warlocker:OnDragStop();</OnDragStop>
+        </Scripts>
+    </Frame>
+
+    <Include file="Components\Counter.xml"/>
+    <Include file="Components\SpellBar.xml"/>
+    <Include file="Components\Port.xml"/>
+</Ui>
