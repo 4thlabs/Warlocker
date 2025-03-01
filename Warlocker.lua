@@ -1,3 +1,5 @@
+local _G = _G or getfenv(0)
+
 Warlocker = {
     ItemName = {
         SoulShard = "Soul Shard",
@@ -17,6 +19,10 @@ Warlocker = {
     BuffSpellRange = { Min = 13, Max = 17 },
     InvocSpellRange = { Min = 18, Max = 20 },
     
+    Ui = {
+        tooltip = nil
+    },
+
     -- Stones count
     soulShardCount = 0,
     -- spell refresh
@@ -26,12 +32,13 @@ Warlocker = {
 }
 
 -- Simple helper to register local components
-function Warlocker:RegisterComponent(f)
+function Warlocker:LoadComponent(f)
   f()
 end
 
 function Warlocker:OnLoad()
-    
+    self.Ui.tooltip = _G["Warlocker_Tooltip"]
+
     this:RegisterEvent("BAG_UPDATE")
     this:RegisterEvent("ADDON_LOADED")
     this:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -100,7 +107,7 @@ function Warlocker:ScanBag()
     end
 end
 
--- Clean bag stones count.
+--- Clean bag stones count.
 function Warlocker:CleanBag()
     self.soulShardCount = 0
     for i = WarlockerStoneSpellRange.Min, WarlockerStoneSpellRange.Max, 1 do
@@ -108,7 +115,7 @@ function Warlocker:CleanBag()
     end
 end
 
--- Scan Spell Book and store found spells in WarlockerSpellTable
+--- Scan Spell Book and store found spells in WarlockerSpellTable
 function Warlocker:ScanSpellBook()
     local spellId = 1
     

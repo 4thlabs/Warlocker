@@ -1,12 +1,12 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
-    <Include file="Config.lua"/>
+    <Include file="Localization-en.lua"/>
     <Include file="Warlocker.lua"/>
     <Include file="Components\Counter.lua"/>
     <Include file="Components\SpellBar.lua"/>
     <Include file="Components\Port.lua"/>
 
-    <!-- <GameTooltip name="WarlockerTooltip" inherits="GameTooltipTemplate" mixin="BackdropTemplateMixin" parent="UIParent" toplevel="true" movable="true" frameStrata="LOW" /> -->
+    <!-- <GameTooltip name="Warlocker_Tooltip" inherits="GameTooltipTemplate" mixin="BackdropTemplateMixin" parent="UIParent" toplevel="true" movable="true" frameStrata="LOW" /> -->
     
     <Frame name="Warlocker_MainFrame" inherits="BackdropTemplate" parent="UIParent" movable="true" enableMouse="true" toplevel="false">
         <Size>

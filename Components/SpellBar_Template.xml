@@ -68,7 +68,9 @@ https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
             <OnLoad>Warlocker.SpellBar:OnLoadMenu()</OnLoad>
             <OnEnter>Warlocker.SpellBar:ShowMenu()</OnEnter>
             <OnLeave>Warlocker.SpellBar:HideMenu()</OnLeave>
+            
         </Scripts>
+        
         <!-- <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border">
             <EdgeSize val="8"/>
             <Color r="1.0" g="0" b="0"/>

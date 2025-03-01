@@ -1,4 +1,4 @@
-Warlocker:RegisterComponent(function()
+Warlocker:LoadComponent(function()
 
 local _G = _G or getfenv(0)
 local SpellBar = {}
@@ -111,6 +111,11 @@ function SpellBar:UpdateStoneCount()
     end
 end
 
+function SpellBar:Tooltip(button, index)
+    GameTooltip:SetOwner(WarlockerSpellTable[index].Button, ANCHOR_BOTTOMLEFT)
+    GameTooltip:SetSpell(WarlockerSpellTable[index].ID)
+end
+
 function SpellBar:UseItem(index)
     local name = WarlockerSpellTable[index].Item
     
@@ -129,7 +134,7 @@ function SpellBar:UseItem(index)
 end
 
 --- Cast a spell from the spell table
----@param index - The spell table index
+---@param index integer The spell table index
 function SpellBar:CastSpell(index)
     if WarlockerSpellTable[index].ID then
         

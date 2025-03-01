@@ -1,4 +1,4 @@
-Warlocker:RegisterComponent(function()
+Warlocker:LoadComponent(function()
 
 local Counter = {}
 

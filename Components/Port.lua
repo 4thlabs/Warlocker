@@ -1,8 +1,7 @@
 ---
 --- Warlocker Port component
 ---
-
-Warlocker:RegisterComponent(function()
+Warlocker:LoadComponent(function()
     
 local _G = _G or getfenv(0)
 
@@ -12,10 +11,8 @@ local Port = {
         ItemHeight = 20,
         -- The offset from the title to be added
         ItemOffset = 30,
-        
         -- Main frame of the Port component
         frame = nil,
-        
         -- List item cache
         itemCache = {}
     },
@@ -65,7 +62,7 @@ function Port:OnDragStop()
 end
 
 ---Item click handler
----@param index - The index of the player to be summoned or removed
+---@param index integer The index of the player to be summoned or removed
 function Port:OnItemClick(button, index)
     if button == "LeftButton" then
         self:SummonPlayer(index)
@@ -106,6 +103,8 @@ function Port:UpdateList()
     end
 end
 
+--- Retreives a button frame either by creating it or reusing one.
+---@param index integer
 function Port:GetListItem(index)
     if (index > table.getn(self.Ui.itemCache)) then -- Creating Ui element
         self.Ui.itemCache[index] = CreateFrame("Button", "$parentItem" .. index, self.Ui.frame, "Warlocker_PortItemTemplate")
@@ -121,6 +120,8 @@ function Port:ClearList()
     end
 end
 
+--- Adds a player to the list.
+---@param name string The player name
 function Port:AddPlayer(name)
     local ownName, _ =  UnitName("player")
     self.Ui.frame:Show()
@@ -131,6 +132,8 @@ function Port:AddPlayer(name)
     end
 end
 
+--- Removes a player from the list.
+---@param name string The player name
 function Port:RemovePlayer(name)
     local index = self:GetPlayerIndex(name)
     
@@ -153,14 +156,27 @@ end
 
 function Port:SummonPlayer(index)
     self:UpdateRoaster()
-    
+
+    local playerId = 0
     if self:IsInRaid() then
-        TargetUnit("raid"..self.playerList[index].id)
+        playerId = "raid"..self.playerList[index].id
     else
-        TargetUnit("party"..self.playerList[index].id)
+        playerId = "party"..self.playerList[index].id
     end
 
-    CastSpell(WarlockerSpellTable[18].ID, BOOKTYPE_SPELL)
+    if  not UnitAffectingCombat("player") and not UnitAffectingCombat(playerId) then
+        -- Removing from clients
+        -- Need to add a 3rd event telling other client that this player is currently being summoned
+        -- Removing player from list must be done after by checking distance
+        SendAddonMessage(self.MsgPrefix.Remove, self.playerList[index].name, "RAID")
+        
+        TargetUnit(playerId)
+
+        SendChatMessage("Summoning " .. self.playerList[index].name .. " ! Click !", self:IsInRaid() and "RAID" or "PARTY")
+        SendChatMessage("Summoning you to " .. GetZoneText() .. "-" .. GetSubZoneText(), "WHISPER", nil, self.playerList[index].name)
+        
+        CastSpell(WarlockerSpellTable[18].ID, BOOKTYPE_SPELL)
+    end
 end
 
 function Port:IsInRaid()
