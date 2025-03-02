@@ -20,9 +20,11 @@ Warlocker = {
     InvocSpellRange = { Min = 18, Max = 20 },
     
     Ui = {
-        tooltip = nil
+        -- Warlocker main frame
+        frame = nil
     },
-
+    -- State of warlocker
+    initialized = false,
     -- Stones count
     soulShardCount = 0,
     -- spell refresh
@@ -37,16 +39,26 @@ function Warlocker:LoadComponent(f)
 end
 
 function Warlocker:OnLoad()
-    self.Ui.tooltip = _G["Warlocker_Tooltip"]
+    self.Ui.frame = _G["Warlocker_MainFrame"]
 
-    this:RegisterEvent("BAG_UPDATE")
-    this:RegisterEvent("ADDON_LOADED")
-    this:RegisterEvent("PLAYER_ENTERING_WORLD")
-    this:RegisterEvent("LEARNED_SPELL_IN_TAB")
-    
-    this:RegisterForDrag("LeftButton")
-    
-    print("|CFF6A6093Warlocker loaded !")
+    print(UnitClass("player"))
+    if UnitClass("player") == "Warlock" then
+        self.Ui.frame:Show()
+        
+        this:RegisterEvent("BAG_UPDATE")
+        this:RegisterEvent("ADDON_LOADED")
+        this:RegisterEvent("PLAYER_ENTERING_WORLD")
+        this:RegisterEvent("LEARNED_SPELL_IN_TAB")
+        
+        this:RegisterForDrag("LeftButton")
+        
+        print("|CFF6A6093Warlocker loaded !")
+        
+        self.initialized = true
+    else
+        self.Ui.frame:Hide()
+        return
+    end
 end
 
 function Warlocker:OnDragStart()
@@ -58,16 +70,18 @@ function Warlocker:OnDragStop()
 end
 
 function Warlocker:OnEvent(event)
-    if event == "BAG_UPDATE" then
-        self:ScanBag()
-        self.SpellBar:UpdateStoneCount()
-    elseif event == "ADDON_LOADED" then
-        self:ScanSpellBook()
-    elseif event == "PLAYER_ENTERING_WORLD" then
-        self.SpellBar:Update()
-    elseif event == "LEARNED_SPELL_IN_TAB" then
-        self.lastLearned = GetTime()
-        self.refreshSpells = true
+    if self.initialized then
+        if event == "BAG_UPDATE" then
+            self:ScanBag()
+            self.SpellBar:UpdateStoneCount()
+        elseif event == "ADDON_LOADED" then
+            self:ScanSpellBook()
+        elseif event == "PLAYER_ENTERING_WORLD" then
+            self.SpellBar:Update()
+        elseif event == "LEARNED_SPELL_IN_TAB" then
+            self.lastLearned = GetTime()
+            self.refreshSpells = true
+        end
     end
 end
 

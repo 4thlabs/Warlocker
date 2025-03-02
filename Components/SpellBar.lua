@@ -14,8 +14,9 @@ function SpellBar:OnLoad()
     self.buffMenuButton = _G["Warlocker_SpellBarBuffMenuButton"]
     
     self.spellBarFrame:SetScale(0.85)
-    
-    this:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
+    if Warlocker.initialized then
+        this:RegisterEvent("ACTIONBAR_UPDATE_COOLDOWN")
+    end
 end
 
 --- OnEvent Handler

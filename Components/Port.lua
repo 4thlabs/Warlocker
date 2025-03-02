@@ -33,12 +33,14 @@ Warlocker.Port = Port
 ---OnLoad handler
 function Port:OnLoad()
     self.Ui.frame = this
-    this:RegisterForDrag("LeftButton")
-    
-    this:RegisterEvent("CHAT_MSG_RAID")
-    this:RegisterEvent("CHAT_MSG_RAID_LEADER")
-    this:RegisterEvent("CHAT_MSG_PARTY")
-    this:RegisterEvent("CHAT_MSG_ADDON")
+    if Warlocker.initialized then
+        this:RegisterForDrag("LeftButton")
+        
+        this:RegisterEvent("CHAT_MSG_RAID")
+        this:RegisterEvent("CHAT_MSG_RAID_LEADER")
+        this:RegisterEvent("CHAT_MSG_PARTY")
+        this:RegisterEvent("CHAT_MSG_ADDON")
+    end
 end
 
 ---Event handler

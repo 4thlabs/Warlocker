@@ -6,7 +6,9 @@ local Counter = {}
 Warlocker.Counter = Counter
 
 function Counter:OnLoad()
-    this:RegisterEvent("BAG_UPDATE")
+    if Warlocker.initialized then
+        this:RegisterEvent("BAG_UPDATE")
+    end
 end
 
 function Counter:OnEvent(event)

@@ -28,7 +28,7 @@ https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
         </Backdrop>
     </Button>
 
-    <Frame name="Warlocker_PortFrame" parent="UIParent" hidden="false" enableMouse="true" movable="true">
+    <Frame name="Warlocker_PortFrame" parent="UIParent" hidden="true" enableMouse="true" movable="true">
         <Size>
             <AbsDimension x="128" y="200"/>
         </Size>
